@@ -13,7 +13,8 @@ val storeDir = File("inputs/")
 const val YEAR = 2022
 
 
-fun input(day: Int, year: Int = YEAR): String {
+fun input(day: Int, year: Int = YEAR, test: String = "", useTest: Boolean = false): String {
+    if(useTest) return test
     val file = File(File(storeDir, "$year"), "$day.txt")
     file.parentFile.mkdirs()
     if(file.exists()) {
@@ -32,8 +33,8 @@ fun input(day: Int, year: Int = YEAR): String {
 // 3.rangeTo(-4) ->
 infix fun Int.rangeTo(to: Int) = if(this < to) this..to else this downTo to
 
-fun inputLines(day: Int, year: Int = YEAR, filterBlank: Boolean = true): List<String> =
-    input(day, year)
+fun inputLines(day: Int, year: Int = YEAR, filterBlank: Boolean = false, test: String = "", useTest: Boolean = false): List<String> =
+    input(day, year, test, useTest).trim()
         .split("\n")
         .apIf(filterBlank) { it.filter(String::isNotBlank) }
 

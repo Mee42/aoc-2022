@@ -1,35 +1,31 @@
 package sh.carson.day1
 
 import sh.carson.*
-import kotlin.math.absoluteValue
 
-fun main() {
-    val input = input(day = 3, year = 2017).ints().first()
-    val space = Array2D.initSquare(1000) { -1 }
-    var coord = point(500, 500)
-    space[coord] = 1
-    var i = 2
-    var travelling = point(1, 0)
-    val directions = l(
-        point(1, 0),
-        point(0, -1),
-        point(-1, 0),
-        point(0, 1)
-    )
-    while(true) {
-        coord += travelling
-        if(!space.isInBound(coord) || i > input + 3) break
-        space[coord] = i++
-        val next = directions[(1 + directions.indexOf(travelling)).mod(4)]
-        if(space[coord + next] == -1) {
-            travelling = next
+fun <T> Iterable<T>.splitBy(splitOn: (T) -> Boolean): List<List<T>> {
+    val x = mutableListOf<List<T>>()
+    var current = mutableListOf<T>()
+    for(elem in this) {
+        if(splitOn(elem)) {
+            x.add(current)
+            current = mutableListOf()
+        } else {
+            current.add(elem)
         }
     }
-    val end = space.withIndexes().first { (a, coords) -> a == input }
-    println(end)
-    println((end.second.x - 500).absoluteValue + (end.second.y - 500).absoluteValue)
-//    space.print(2)
-//    println(space)
-//    val a = input
-//    println(a)
+    return x;
+}
+
+fun main() {
+    val input = input(day = 1, year = 2022).split("\n\n").map { elf ->
+        elf.ints().sum()
+    }.sortedByDescending { it }
+
+    val input2 = inputLines(day = 1, year = 2022).splitBy { it == "" }.map { elf -> elf.sumOf { it.toInt() } }.sortedByDescending { it }
+
+
+
+
+    println(input[0] + input[1] + input[2])
+    println(input2[0] + input2[1] + input2[2])
 }
