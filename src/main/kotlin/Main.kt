@@ -62,7 +62,7 @@ fun <T> T.apIf(conditional: Boolean, block: (T) -> T): T = if(conditional) block
 
 enum class Part { ONE, TWO }
 
-fun <T> List<T>.foldSameType(folder: (T, T) -> T, ifSizeIsZero: T? = null): T {
+fun <T> List<T>.foldSameType(ifSizeIsZero: T? = null, folder: (T, T) -> T): T {
     if(isEmpty()) return ifSizeIsZero ?: error("size == 0, and there's no sizeofzero default value")
     var value = first()
     for(i in 1 until size) {
