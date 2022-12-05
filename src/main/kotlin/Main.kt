@@ -147,3 +147,7 @@ fun Iterable<Char>.fromBin() = this.joinToString("").toLong(2)
 fun String.fromBin() = this.toCharArray().toList().fromBin()
 
 fun String.char(): List<Char> = this.toCharArray().toList()
+
+
+fun <T> ArrayDeque<T>.push(t: T) = addLast(t)
+fun <T> ArrayDeque<T>.pop() = removeLast()
