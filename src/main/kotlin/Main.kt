@@ -70,6 +70,7 @@ fun <T> List<T>.foldSameType(ifSizeIsZero: T? = null, folder: (T, T) -> T): T {
     }
     return value
 }
+
 fun e(): Nothing = error("e()")
 
 // ignore null safety

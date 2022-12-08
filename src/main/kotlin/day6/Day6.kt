@@ -10,5 +10,3 @@ fun main() {
     println("Part 1:" + sol(4))
     println("Part 2:" + sol(14))
 }
-
-
