@@ -8,6 +8,13 @@ data class Coords2D(val x: Int, val y: Int) {
     operator fun minus(other: Coords2D): Coords2D {
         return Coords2D(x - other.x, y - other.y)
     }
+    //pairwise multi
+    operator fun times(other: Coords2D): Coords2D {
+        return Coords2D(x * other.x, y * other.y)
+    }
+    operator fun div(by: Int): Coords2D {
+        return Coords2D(x / by, y / by)
+    }
 }
 
 data class Coords3D(val x: Int, val y: Int, val z: Int)
