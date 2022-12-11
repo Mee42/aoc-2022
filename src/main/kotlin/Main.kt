@@ -152,3 +152,8 @@ fun String.char(): List<Char> = this.toCharArray().toList()
 
 fun <T> ArrayDeque<T>.push(t: T) = addLast(t)
 fun <T> ArrayDeque<T>.pop() = removeLast()
+
+
+fun Iterable<Long>.sum() = this.sumOf { it }
+
+fun Iterable<Long>.product() = this.fold(1L) { a, b -> a * b }
