@@ -14,6 +14,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+//    implementation("com.google.code.gson:gson:2.10")
+    implementation("com.github.cliftonlabs:json-simple:4.0.1")
 }
 
 tasks.test {
