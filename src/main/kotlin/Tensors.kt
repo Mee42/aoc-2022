@@ -1,29 +1,34 @@
 package sh.carson
 
+import kotlin.math.roundToInt
+import kotlin.math.sqrt
+
 
 data class Coords2D(val x: Int, val y: Int) {
-    operator fun plus(other: Coords2D): Coords2D {
-        return Coords2D(x + other.x, y + other.y)
-    }
-    operator fun minus(other: Coords2D): Coords2D {
-        return Coords2D(x - other.x, y - other.y)
-    }
-    //pairwise multi
-    operator fun times(other: Coords2D): Coords2D {
-        return Coords2D(x * other.x, y * other.y)
-    }
-    operator fun div(by: Int): Coords2D {
-        return Coords2D(x / by, y / by)
-    }
+    operator fun plus(other: Coords2D) = Coords2D(x + other.x, y + other.y)
+    operator fun plus(c: Int) = this + point(c, c)
+    operator fun minus(other: Coords2D) = Coords2D(x - other.x, y - other.y)
+    operator fun minus(c: Int) = this - point(c, c)
+    operator fun times(other: Coords2D) = Coords2D(x * other.x, y * other.y)
+    operator fun times(c: Int) = this * point(c, c)
+    operator fun div(other: Coords2D) = Coords2D(x / other.x, y / other.y)
+    operator fun div(c: Int) = this / point(c, c)
+    fun shittyIntegerNormalize(): Coords2D = Coords2D((x / mag()).roundToInt(), (y / mag()).roundToInt())
+    fun mag() = sqrt((x * x + y * y).toDouble())
+    fun manhattenDistance() = x + y
+
 }
 
 data class Coords3D(val x: Int, val y: Int, val z: Int)
 data class Coords4D(val x: Int, val y: Int, val z: Int, val w: Int)
 
 fun point(x: Int, y: Int) = Coords2D(x, y)
+fun p(x: Int, y: Int) = point(x, y)
 fun pointRC(row: Int, col: Int) = point(x = row, y = col)
 fun point(x: Int, y: Int, z: Int) = Coords3D(x, y, z)
+fun p(x: Int, y: Int, z: Int) = point(x, y, z)
 fun point(x: Int, y: Int, z: Int, w: Int) = Coords4D(x, y, z, w)
+fun p(x: Int, y: Int, z: Int, w: Int) = point(x, y, z, w)
 
 
 
