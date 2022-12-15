@@ -1,5 +1,6 @@
 package sh.carson
 
+import kotlin.math.absoluteValue
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
@@ -15,7 +16,7 @@ data class Coords2D(val x: Int, val y: Int) {
     operator fun div(c: Int) = this / point(c, c)
     fun shittyIntegerNormalize(): Coords2D = Coords2D((x / mag()).roundToInt(), (y / mag()).roundToInt())
     fun mag() = sqrt((x * x + y * y).toDouble())
-    fun manhattenDistance() = x + y
+    fun manhattenDistance() = x.absoluteValue + y.absoluteValue
 
 }
 
